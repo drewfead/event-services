@@ -60,14 +60,14 @@ struct Event {
 }
 
 service EventService {
-    void create(1: ClientInfo client, 2: string eventId, 3: Event event) throws (1: EventError e)
-    void update(1: ClientInfo client, 2: string eventId, 3: Event event) throws (1: EventError e)
-    void cancel(1: ClientInfo client, 2: string eventId) throws (1: EventError e)
-    Event find(1: ClientInfo client, 2: string eventId) throws (1: EventError e)
+    void create(1: ClientInfo ci, 2: string eventId, 3: Event event) throws (1: EventError e)
+    void update(1: ClientInfo ci, 2: string eventId, 3: Event event) throws (1: EventError e)
+    void cancel(1: ClientInfo ci, 2: string eventId) throws (1: EventError e)
+    Event find(1: ClientInfo ci, 2: string eventId) throws (1: EventError e)
 }
 
 service AckService {
-    void ack(1: ClientInfo client, 2: string eventId) throws (1: EventError e)
+    void ack(1: ClientInfo ci, 2: string eventId) throws (1: EventError e)
 }
 
 const string EVENT_SERVICE = "EventService"

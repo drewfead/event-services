@@ -20,17 +20,17 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>3.0.2</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>com.aphyr</groupId>
             <artifactId>riemann-java-client</artifactId>
-            <version>0.2.10</version>
+            <version>0.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
-            <version>3.3.5</version>
+            <version>3.6.0</version>
         </dependency>
         <dependency>
         	<groupId>org.apache.commons</groupId>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

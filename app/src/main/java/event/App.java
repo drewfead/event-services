@@ -30,7 +30,7 @@ public class App {
 
     private RiemannClient _riemann;
     private Connection _rabbitConn;
-    private RabbitPostman _postman;
+    private Publisher _publisher;
 
     private static String runtime() {
         final String e = System.getenv("runtimeEnvironment");
@@ -113,10 +113,10 @@ public class App {
 
         final String exchangeName = "event-delivery";
 
-        _postman = new RabbitPostman(exchangeName, cf);
-        _postman.start();
-        _postman.startRedelivery();
-        _postman.startExpire();
+        _publisher = new Publisher(exchangeName, cf);
+        _publisher.start();
+        _publisher.startRedelivery();
+        _publisher.startExpire();
 
         final EventRemote er = new EventRemote(db);
         final AckRemote ar = new AckRemote(db);
@@ -126,9 +126,9 @@ public class App {
 
 
     public void stop() {
-        _postman.stopRedelivery();
-        _postman.stopExpire();
-        _postman.stop();
+        _publisher.stopRedelivery();
+        _publisher.stopExpire();
+        _publisher.stop();
 
         try {
             _rabbitConn.close();
@@ -142,7 +142,7 @@ public class App {
 
         if(_riemann != null){
             try{
-                _riemann.disconnect();
+                _riemann.close();
             }
             catch (Exception e){
                 LOG.debug("failed to disconnect riemann on shutdown", e);
